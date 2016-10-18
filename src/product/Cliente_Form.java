@@ -1,11 +1,16 @@
 package product;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 public class Cliente_Form extends JFrame{
+	private ArrayList<Cliente> listaClientes;
 	public Cliente_Form(){
+		listaClientes = new ArrayList<Cliente>();
 		Container form_container = this.getContentPane();
 		form_container.setLayout(null);
 		JLabel lnome = new JLabel("Nome.: ");
@@ -51,6 +56,48 @@ public class Cliente_Form extends JFrame{
 		setTitle("Formulario Cliente");
 		setResizable(false);
 		//setDefaultCloseOperation(EXIT_ON_CLOSE);
+		b1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Cliente c1 = new Cliente(tnome.getText(), tidade.getText(), tcpf.getText(), trg.getText());
+				listaClientes.add(c1);
+				tnome.setText("");
+				tidade.setText("");
+				tcpf.setText("");
+				trg.setText("");
+			}
+		});
+		
+		b2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tnome.setText("");
+				tidade.setText("");
+				tcpf.setText("");
+				trg.setText("");
+			}
+		});
+		
+		b3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try{
+					for (Cliente c : listaClientes){
+						System.out.println("****************************************");
+						System.out.println("Nome: " + c.getNome() + " Idade: " + c.getIdade()
+						+ " CPF: " + c.getCPF() + " RG: " + c.getRG());
+					}
+				}catch (NullPointerException exception){
+					System.out.println("Não foram encontrados clientes no systema");
+				}
+			}
+		});
 	}
 
 }

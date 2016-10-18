@@ -2,9 +2,14 @@ package product;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Product_Form extends JFrame{
+	private ArrayList<Produto> listaProdutos;
 	public Product_Form(){
+		listaProdutos = new ArrayList<Produto>();
 		Container produto = this.getContentPane();
 		produto.setLayout(null);
 		JLabel lcodigo = new JLabel("Código.: ");
@@ -40,7 +45,47 @@ public class Product_Form extends JFrame{
 		produto.add(b3);
 		
 		setSize(350,230);
-		setTitle("Formulario Rroduto");
+		setTitle("Formulario Produto");
 		setResizable(false);
+		b1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Produto p1 = new Produto(Integer.parseInt(tcodigo.getText()), tnome.getText(), tunidade.getText());
+				listaProdutos.add(p1);
+				tcodigo.setText("");
+				tnome.setText("");
+				tunidade.setText("");
+			}
+		});
+		
+		b2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tcodigo.setText("");
+				tnome.setText("");
+				tunidade.setText("");
+			}
+		});
+		
+		b3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try{
+					for (Produto p : listaProdutos){
+						System.out.println("****************************************");
+						System.out.println("Código: " + p.getID() + " Nome: " + p.getNome() + " Unidade de Medida: " 
+								+ p.getUnidade());
+					}
+				}catch (NullPointerException exception){
+					System.out.println("Não foram encontrados produtos no sistema");
+				}
+			}
+		});
 	}
 }

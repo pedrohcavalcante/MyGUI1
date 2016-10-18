@@ -2,10 +2,16 @@ package product;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Fornecedor_Form extends JFrame{
-
+	
+	private ArrayList<Fornecedor> listaFornecedores;
+	
 	public Fornecedor_Form(){
+		listaFornecedores = new ArrayList<Fornecedor>();
 		Container forn = this.getContentPane();
 		forn.setLayout(null);
 		JLabel lcodigo = new JLabel("Código.: ");
@@ -44,6 +50,43 @@ public class Fornecedor_Form extends JFrame{
 		setTitle("Formulario Fornecedor");
 		setResizable(false);
 		//setDefaultCloseOperation(EXIT_ON_CLOSE);
+		b1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Fornecedor f1 = new Fornecedor(Integer.parseInt(tcodigo.getText()), tnome.getText(), tcnpj.getText());
+				listaFornecedores.add(f1);
+				tcodigo.setText("");
+				tnome.setText("");
+				tcnpj.setText("");
+			}
+		});
+		b2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tcodigo.setText("");
+				tnome.setText("");
+				tcnpj.setText("");
+			}
+		});
+		b3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try{
+					for (Fornecedor f : listaFornecedores){
+						System.out.println("****************************************");
+						System.out.println("Codigo: " + f.getCodigo() + " Nome: " + f.getNome() + " CNPJ: " + f.getCNPJ());
+					}
+				}catch (NullPointerException exception){
+					System.out.println("Erro. Não existe fornecedores cadastrados");
+				}
+			}
+		});
 	}
 
 }
