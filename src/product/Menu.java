@@ -43,6 +43,7 @@ public class Menu extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				new Product_Form().setVisible(true);
 				
 			}
 		});
