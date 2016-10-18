@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 
 public class Cliente_Form extends JFrame{
 	private ArrayList<Cliente> listaClientes;
@@ -20,25 +21,39 @@ public class Cliente_Form extends JFrame{
 		
 		final JTextField tnome  = new JTextField();
 		final JTextField tidade = new JTextField();
-		final JTextField tcpf   = new JTextField();
+		MaskFormatter text_cpf = null;
+		try{
+			text_cpf = new MaskFormatter("###.###.###-##");
+			
+		}catch (Exception e){
+			System.out.println("error");
+		}
 		final JTextField trg    = new JTextField();
-				
+		final JFormattedTextField tcpf =  new JFormattedTextField(text_cpf);	
 		JButton b1 = new JButton("Submeter");
 		JButton b2 = new JButton("Limpar");
 		JButton b3 = new JButton("Listar");
 		
 		lnome.setBounds(10,10,100,30);
+		lnome.grabFocus();
+		lnome.setForeground(Color.blue);
 		tnome.setBounds(55,10,280,25);
 		lidade.setBounds(10,40,100,30);
+		lidade.setForeground(Color.blue);
 		tidade.setBounds(55,40,22,25);
 		lcpf.setBounds(10,70,100,30);
+		lcpf.setForeground(Color.blue);
 		tcpf.setBounds(55,70,100,25);
 		lrg.setBounds(10,100,100,30);
+		lrg.setForeground(Color.blue);
 		trg.setBounds(55,100,60,25);
 
 		b1.setBounds(10 ,140,100,30);
+		b1.setMnemonic('S');
 		b2.setBounds(120,140,100,30);
+		b2.setMnemonic('L');
 		b3.setBounds(230,140,100,30);
+		b3.setMnemonic('t');
 		
 		form_container.add(lnome);
 		form_container.add(tnome);
@@ -55,7 +70,7 @@ public class Cliente_Form extends JFrame{
 		setSize(350,230);
 		setTitle("Formulario Cliente");
 		setResizable(false);
-		//setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		b1.addActionListener(new ActionListener() {
 			
 			@Override

@@ -25,14 +25,20 @@ public class Product_Form extends JFrame{
 		JButton b3 = new JButton("Listar");
 		
 		lcodigo.setBounds(10, 10, 100, 30);
+		lcodigo.setForeground(Color.blue);
 		tcodigo.setBounds(60, 10, 280, 25);
 		lnome.setBounds(10, 40, 100, 30);
+		lnome.setForeground(Color.blue);
 		tnome.setBounds(60, 40, 280, 25);
 		lunidade.setBounds(10, 70, 100, 30);
+		lunidade.setForeground(Color.blue);
 		tunidade.setBounds(63, 70, 277, 25);
 		b1.setBounds(10 ,140,100,30);
+		b1.setMnemonic('S');
 		b2.setBounds(120,140,100,30);
+		b2.setMnemonic('L');
 		b3.setBounds(230,140,100,30);
+		b3.setMnemonic('s');
 		
 		produto.add(lcodigo);
 		produto.add(tcodigo);
@@ -47,6 +53,7 @@ public class Product_Form extends JFrame{
 		setSize(350,230);
 		setTitle("Formulario Produto");
 		setResizable(false);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		b1.addActionListener(new ActionListener() {
 			
 			@Override
