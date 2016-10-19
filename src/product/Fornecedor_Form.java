@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class Fornecedor_Form extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Fornecedor> listaFornecedores;
 	
 	public Fornecedor_Form(){

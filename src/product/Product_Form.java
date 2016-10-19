@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Product_Form extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Produto> listaProdutos;
 	public Product_Form(){
 		listaProdutos = new ArrayList<Produto>();

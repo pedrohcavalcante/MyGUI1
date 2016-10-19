@@ -9,6 +9,10 @@ import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 
 public class Cliente_Form extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Cliente> listaClientes;
 	public Cliente_Form(){
 		listaClientes = new ArrayList<Cliente>();
