@@ -47,10 +47,10 @@ public class Cliente_Form extends JInternalFrame {
 		}catch (Exception e){
 			System.out.println("error");
 		}
-		trg    = new JTextField();
+		
 		tcpf =  new JFormattedTextField(text_cpf);	
 		
-		
+		trg    = new JTextField();
 		lnome.setBounds(10,10,100,30);
 		lnome.grabFocus();
 		lnome.setForeground(Color.blue);
@@ -93,12 +93,16 @@ public class Cliente_Form extends JInternalFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Cliente c1 = new Cliente(tnome.getText(), tidade.getText(), tcpf.getText(), trg.getText());
-				listaClientes.add(c1);
-				tnome.setText("");
-				tidade.setText("");
-				tcpf.setText("");
-				trg.setText("");
+				int confirmacao = JOptionPane.showConfirmDialog(null,"Deseja cadastrar o cliente?");
+				if (confirmacao == JOptionPane.YES_OPTION){
+					Cliente c1 = new Cliente(tnome.getText(), tidade.getText(), tcpf.getText(), trg.getText());
+					listaClientes.add(c1);
+					tnome.setText("");
+					tidade.setText("");
+					tcpf.setText("");
+					trg.setText("");
+				}
+				
 			}
 		});
 		
@@ -107,10 +111,14 @@ public class Cliente_Form extends JInternalFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				tnome.setText("");
-				tidade.setText("");
-				tcpf.setText("");
-				trg.setText("");
+				int confirmacao = JOptionPane.showConfirmDialog(null,"Deseja limpar o formulário?");
+				if (confirmacao == JOptionPane.YES_OPTION){
+					tnome.setText("");
+					tidade.setText("");
+					tcpf.setText("");
+					trg.setText("");
+				}
+				
 			}
 		});
 		
@@ -118,16 +126,20 @@ public class Cliente_Form extends JInternalFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				try{
-					for (Cliente c : listaClientes){
-						System.out.println("****************************************");
-						System.out.println("Nome: " + c.getNome() + " Idade: " + c.getIdade()
-						+ " CPF: " + c.getCPF() + " RG: " + c.getRG());
+				int confirmacao = JOptionPane.showConfirmDialog(null,"Deseja listar os clientes?");
+				if (confirmacao == JOptionPane.YES_OPTION){
+					try{
+						for (Cliente c : listaClientes){
+							System.out.println("****************************************");
+							System.out.println("Nome: " + c.getNome() + " Idade: " + c.getIdade()
+							+ " CPF: " + c.getCPF() + " RG: " + c.getRG());
+						}
+					}catch (NullPointerException exception){
+						System.out.println("Não foram encontrados clientes no systema");
 					}
-				}catch (NullPointerException exception){
-					System.out.println("Não foram encontrados clientes no systema");
 				}
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}

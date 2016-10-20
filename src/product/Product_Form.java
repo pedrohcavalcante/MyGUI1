@@ -66,11 +66,14 @@ public class Product_Form extends JInternalFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Produto p1 = new Produto(Integer.parseInt(tcodigo.getText()), tnome.getText(), tunidade.getText());
-				listaProdutos.add(p1);
-				tcodigo.setText("");
-				tnome.setText("");
-				tunidade.setText("");
+				int confirmacao = JOptionPane.showConfirmDialog(null,"Deseja cadastrar o produto?");
+				if (confirmacao == JOptionPane.YES_OPTION){
+					Produto p1 = new Produto(Integer.parseInt(tcodigo.getText()), tnome.getText(), tunidade.getText());
+					listaProdutos.add(p1);
+					tcodigo.setText("");
+					tnome.setText("");
+					tunidade.setText("");
+				}
 			}
 		});
 		
@@ -79,9 +82,12 @@ public class Product_Form extends JInternalFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				tcodigo.setText("");
-				tnome.setText("");
-				tunidade.setText("");
+				int confirmacao = JOptionPane.showConfirmDialog(null,"Deseja limpar o formulário?");
+				if (confirmacao == JOptionPane.YES_OPTION){
+					tcodigo.setText("");
+					tnome.setText("");
+					tunidade.setText("");
+				}
 			}
 		});
 		
@@ -90,14 +96,17 @@ public class Product_Form extends JInternalFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try{
-					for (Produto p : listaProdutos){
-						System.out.println("****************************************");
-						System.out.println("Código: " + p.getID() + " Nome: " + p.getNome() + " Unidade de Medida: " 
-								+ p.getUnidade());
+				int confirmacao = JOptionPane.showConfirmDialog(null,"Deseja limpar o formulário?");
+				if (confirmacao == JOptionPane.YES_OPTION){
+					try{
+						for (Produto p : listaProdutos){
+							System.out.println("****************************************");
+							System.out.println("Código: " + p.getID() + " Nome: " + p.getNome() + " Unidade de Medida: " 
+									+ p.getUnidade());
+						}
+					}catch (NullPointerException exception){
+						System.out.println("Não foram encontrados produtos no sistema");
 					}
-				}catch (NullPointerException exception){
-					System.out.println("Não foram encontrados produtos no sistema");
 				}
 			}
 		});

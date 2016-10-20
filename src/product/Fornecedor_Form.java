@@ -1,6 +1,8 @@
 package product;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +23,8 @@ public class Fornecedor_Form extends JInternalFrame{
 	final JTextField tcodigo = new JTextField();
 	final JTextField tnome = new JTextField();
 	final JTextField tcnpj = new JTextField();
-	final JTextField listagem = new JTextField();
+	MaskFormatter text_cnpj = null;
+	final JFormattedTextField formatted_cnpj;
 	
 	JButton b1 = new JButton("Submeter");
 	JButton b2 = new JButton("Limpar");
@@ -42,7 +45,16 @@ public class Fornecedor_Form extends JInternalFrame{
 		lcnpj.setBounds(10, 70, 100, 30);
 		lcnpj.setForeground(Color.blue);
 		tcnpj.setBounds(60, 70, 280, 25);
-		listagem.setBounds(25, 170, 300, 300);
+		
+		try{
+			text_cnpj = new MaskFormatter("##.###.###/####-##");
+		}catch (Exception e){
+			System.out.println("error");
+		}
+		
+		formatted_cnpj = new JFormattedTextField(text_cnpj);
+		formatted_cnpj.setBounds(60, 70, 280, 25);
+		
 		b1.setBounds(10 ,140,100,30);
 		b1.setMnemonic('S');
 		b2.setBounds(120,140,100,30);
@@ -55,13 +67,12 @@ public class Fornecedor_Form extends JInternalFrame{
 		forn.add(lnome);
 		forn.add(tnome);
 		forn.add(lcnpj);
-		forn.add(tcnpj);
+		forn.add(formatted_cnpj);
 		forn.add(b1);
 		forn.add(b2);
 		forn.add(b3);
-		forn.add(listagem);
 		
-		setSize(350,500);
+		setSize(350,230);
 		setTitle(str);
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -70,11 +81,18 @@ public class Fornecedor_Form extends JInternalFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Fornecedor f1 = new Fornecedor(Integer.parseInt(tcodigo.getText()), tnome.getText(), tcnpj.getText());
-				listaFornecedores.add(f1);
-				tcodigo.setText("");
-				tnome.setText("");
-				tcnpj.setText("");
+				int confirmacao = JOptionPane.showConfirmDialog(null,"Deseja realmente cadastrar o fornecedor");
+				if (confirmacao == JOptionPane.YES_OPTION){
+					try{
+						Fornecedor f1 = new Fornecedor(Integer.parseInt(tcodigo.getText()), tnome.getText(), formatted_cnpj.getText());
+						listaFornecedores.add(f1);
+						tcodigo.setText("");
+						tnome.setText("");
+						formatted_cnpj.setText("");
+					}catch (NumberFormatException exception){
+						System.out.println("Formato errado");
+					}
+				}
 			}
 		});
 		b2.addActionListener(new ActionListener() {
@@ -82,27 +100,34 @@ public class Fornecedor_Form extends JInternalFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				tcodigo.setText("");
-				tnome.setText("");
-				tcnpj.setText("");
-				listagem.setText("");
+				int confirmacao = JOptionPane.showConfirmDialog(null,"Deseja limpar o formulário?");
+				if (confirmacao == JOptionPane.YES_OPTION){
+					tcodigo.setText("");
+					tnome.setText("");
+					formatted_cnpj.setText("");
+				}
+				
 			}
 		});
 		b3.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				// TODO Auto-generated method stub
-				listagem.setText("teste");
-				try{
-					
-					for (Fornecedor f : listaFornecedores){
-						listagem.setText("****************************************\n");
-						listagem.setText("Codigo: " + f.getCodigo() + " Nome: " + f.getNome() + " CNPJ: " + f.getCNPJ() + "\n");
+				int confirmacao = JOptionPane.showConfirmDialog(null,"Deseja listar o formulário?");
+				if(confirmacao == JOptionPane.YES_OPTION){
+					try{
+						
+						for (Fornecedor f : listaFornecedores){
+							System.out.println("****************************************\n");
+							System.out.println("Codigo: " + f.getCodigo() + " Nome: " + f.getNome() + " CNPJ: " + f.getCNPJ());
+						}
+					}catch (NullPointerException exception){
+						System.out.println("Erro. Não existe fornecedores cadastrados");
 					}
-				}catch (NullPointerException exception){
-					System.out.println("Erro. Não existe fornecedores cadastrados");
 				}
+					
 			}
 		});
 	}
