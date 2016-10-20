@@ -1,7 +1,6 @@
 package product;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -53,17 +52,6 @@ public class Menu extends JFrame{
 		});
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Menu m1 = new Menu();
-		EventQueue.invokeLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				m1.setVisible(true);
-			}
-		});
-	}
+	
 
 }
