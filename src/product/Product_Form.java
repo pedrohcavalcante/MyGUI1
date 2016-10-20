@@ -6,27 +6,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Product_Form extends JFrame{
+public class Product_Form extends JInternalFrame{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Produto> listaProdutos;
-	public Product_Form(){
+	JLabel lcodigo = new JLabel("Código.: ");
+	JLabel lnome = new JLabel("Nome.: ");
+	JLabel lunidade = new JLabel("Unidade.: ");
+	
+	final JTextField tcodigo = new JTextField();
+	final JTextField tnome = new JTextField();
+	final JTextField tunidade = new JTextField();
+	
+	JButton b1 = new JButton("Submeter");
+	JButton b2 = new JButton("Limpar");
+	JButton b3 = new JButton("Listar");
+	
+	public Product_Form(String str){
+		super(str,false, true);
 		listaProdutos = new ArrayList<Produto>();
 		Container produto = this.getContentPane();
 		produto.setLayout(null);
-		JLabel lcodigo = new JLabel("Código.: ");
-		JLabel lnome = new JLabel("Nome.: ");
-		JLabel lunidade = new JLabel("Unidade.: ");
 		
-		final JTextField tcodigo = new JTextField();
-		final JTextField tnome = new JTextField();
-		final JTextField tunidade = new JTextField();
-		
-		JButton b1 = new JButton("Submeter");
-		JButton b2 = new JButton("Limpar");
-		JButton b3 = new JButton("Listar");
 		
 		lcodigo.setBounds(10, 10, 100, 30);
 		lcodigo.setForeground(Color.blue);
@@ -55,7 +58,7 @@ public class Product_Form extends JFrame{
 		produto.add(b3);
 		
 		setSize(350,230);
-		setTitle("Formulario Produto");
+		setTitle(str);
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		b1.addActionListener(new ActionListener() {

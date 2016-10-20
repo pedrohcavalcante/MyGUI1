@@ -8,35 +8,48 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 
-public class Cliente_Form extends JFrame{
+public class Cliente_Form extends JInternalFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Cliente> listaClientes;
-	public Cliente_Form(){
-		listaClientes = new ArrayList<Cliente>();
-		Container form_container = this.getContentPane();
-		form_container.setLayout(null);
-		JLabel lnome = new JLabel("Nome.: ");
-		JLabel lidade = new JLabel("Idade.:");
-		JLabel lcpf =   new JLabel("CPF..:");
-		JLabel lrg =    new JLabel("RG...:");
+	
+	JLabel lnome = new JLabel("Nome.: ");
+	JLabel lidade = new JLabel("Idade.:");
+	JLabel lcpf =   new JLabel("CPF..:");
+	JLabel lrg =    new JLabel("RG...:");
+	final JTextField tnome  = new JTextField();
+	final JTextField tidade = new JTextField();
+	JButton b1 = new JButton("Submeter");
+	JButton b2 = new JButton("Limpar");
+	JButton b3 = new JButton("Listar");
+	MaskFormatter text_cpf = null;
+	final JFormattedTextField tcpf;
+	final JTextField trg;
+	
+	
+	public Cliente_Form(String str){
+		super(str, false, true);
 		
-		final JTextField tnome  = new JTextField();
-		final JTextField tidade = new JTextField();
-		MaskFormatter text_cpf = null;
+		
+		Container form_container = this.getContentPane();
+		listaClientes = new ArrayList<Cliente>();
+		
+		form_container.setLayout(null);
+		
+		
+		
+		
 		try{
 			text_cpf = new MaskFormatter("###.###.###-##");
 			
 		}catch (Exception e){
 			System.out.println("error");
 		}
-		final JTextField trg    = new JTextField();
-		final JFormattedTextField tcpf =  new JFormattedTextField(text_cpf);	
-		JButton b1 = new JButton("Submeter");
-		JButton b2 = new JButton("Limpar");
-		JButton b3 = new JButton("Listar");
+		trg    = new JTextField();
+		tcpf =  new JFormattedTextField(text_cpf);	
+		
 		
 		lnome.setBounds(10,10,100,30);
 		lnome.grabFocus();
@@ -72,7 +85,7 @@ public class Cliente_Form extends JFrame{
 		form_container.add(b3);
 		
 		setSize(350,230);
-		setTitle("Formulario Cliente");
+		setTitle(str);
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		b1.addActionListener(new ActionListener() {
