@@ -6,11 +6,14 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * Essa classe define a janela principal da aplicação
+ * @author pedrohbcavalcante
+ * @version 0.1
+ * 
+ */
 public class Menu extends JFrame implements ActionListener{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	JDesktopPane dtop = new JDesktopPane();
 	JMenuBar mnbar = new JMenuBar();
@@ -18,6 +21,9 @@ public class Menu extends JFrame implements ActionListener{
 	JMenuItem fileMenu1 = new JMenuItem("Cliente");
 	JMenuItem fileMenu2 = new JMenuItem("Fornecedor");
 	JMenuItem fileMenu3 = new JMenuItem("Produto");
+	/**
+	 * Construtor da classe
+	 */
 	public Menu(){
 		Container ct = this.getContentPane();
 		ct.setLayout(new BorderLayout());

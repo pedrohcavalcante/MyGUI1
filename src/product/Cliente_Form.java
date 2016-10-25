@@ -7,11 +7,12 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
-
+/**
+ * Essa classe implementa uma janela com campos para cadastro de clientes
+ * @author pedrohbcavalcante
+ * @version 0.1
+ */
 public class Cliente_Form extends JInternalFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Cliente> listaClientes;
 	
@@ -28,7 +29,11 @@ public class Cliente_Form extends JInternalFrame {
 	final JFormattedTextField tcpf;
 	final JTextField trg;
 	
-	
+	/**
+	 * Classe construtora
+	 * @param str nome que irá aparecer na janela
+	 *
+	 */
 	public Cliente_Form(String str){
 		super(str, false, true);
 		
@@ -88,6 +93,10 @@ public class Cliente_Form extends JInternalFrame {
 		setTitle(str);
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
+		/**
+		 * ações do action listener do botão de cadastrar
+		 */
 		b1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -105,7 +114,9 @@ public class Cliente_Form extends JInternalFrame {
 				
 			}
 		});
-		
+		/**
+		 * Ações do action Listener do botão de limpar
+		 */
 		b2.addActionListener(new ActionListener() {
 			
 			@Override
@@ -121,7 +132,9 @@ public class Cliente_Form extends JInternalFrame {
 				
 			}
 		});
-		
+		/**
+		 * Ações do botão de listar os clientes cadastrados
+		 */
 		b3.addActionListener(new ActionListener() {
 			
 			@Override

@@ -7,12 +7,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+/**
+ * Classe que cria interface para cadastro de um fornecedor
+ * @author pedrohbcavalcante
+ * @version 0.1
+ * 
+ */
 public class Fornecedor_Form extends JInternalFrame{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Fornecedor> listaFornecedores;
 	
@@ -29,7 +31,11 @@ public class Fornecedor_Form extends JInternalFrame{
 	JButton b1 = new JButton("Submeter");
 	JButton b2 = new JButton("Limpar");
 	JButton b3 = new JButton("Listar");
-	
+	/**
+	 * 
+	 * @param str
+	 * Construtor da classe
+	 */
 	public Fornecedor_Form(String str){
 		super(str, false, true);
 		listaFornecedores = new ArrayList<Fornecedor>();

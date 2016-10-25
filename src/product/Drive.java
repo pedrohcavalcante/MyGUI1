@@ -1,7 +1,11 @@
 package product;
 
 import java.awt.EventQueue;
-
+/**
+ * Classe que inicializa o projeto
+ * @author pedrohbcavalcante
+ * @version 0.1
+ */
 public class Drive {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

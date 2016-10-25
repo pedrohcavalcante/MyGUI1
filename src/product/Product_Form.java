@@ -5,7 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+/**
+ * Essa classe define a janela de cadastro dos produtos
+ * @author pedrohbcavalcante
+ * @version 0.1
+ * 
+ */
 public class Product_Form extends JInternalFrame{
 	/**
 	 * 
@@ -23,7 +28,11 @@ public class Product_Form extends JInternalFrame{
 	JButton b1 = new JButton("Submeter");
 	JButton b2 = new JButton("Limpar");
 	JButton b3 = new JButton("Listar");
-	
+	/**
+	 * 
+	 * @param str nome da janela
+	 * Classe construtora que contem todos os campos de cadastro do produto
+	 */
 	public Product_Form(String str){
 		super(str,false, true);
 		listaProdutos = new ArrayList<Produto>();
